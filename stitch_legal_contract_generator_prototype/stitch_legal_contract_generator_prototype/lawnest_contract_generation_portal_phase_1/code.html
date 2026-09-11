@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LawNest - Contract Generation Portal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed": "#d3e5ef",
+            "error": "#ba1a1a",
+            "secondary": "#775a00",
+            "primary": "#000508",
+            "tertiary": "#000414",
+            "on-background": "#111c2d",
+            "on-surface": "#111c2d",
+            "on-primary-container": "#778891",
+            "on-surface-variant": "#43474a",
+            "on-tertiary-fixed": "#0a1a3a",
+            "outline-variant": "#c3c7ca",
+            "surface-dim": "#cfdaf2",
+            "inverse-on-surface": "#ecf1ff",
+            "on-secondary-fixed-variant": "#5a4300",
+            "tertiary-fixed": "#d9e2ff",
+            "on-tertiary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#fece57",
+            "background": "#f9f9ff",
+            "primary-fixed-dim": "#b7c9d3",
+            "on-tertiary-container": "#7785ab",
+            "secondary-fixed-dim": "#eec14b",
+            "on-secondary-container": "#735700",
+            "primary-container": "#0f2027",
+            "surface-bright": "#f9f9ff",
+            "inverse-primary": "#b7c9d3",
+            "on-error-container": "#93000a",
+            "on-error": "#ffffff",
+            "surface-tint": "#506169",
+            "inverse-surface": "#263143",
+            "on-primary": "#ffffff",
+            "surface-container-highest": "#d8e3fb",
+            "surface-container-lowest": "#ffffff",
+            "surface-container": "#e7eeff",
+            "on-primary-fixed-variant": "#384951",
+            "surface": "#f9f9ff",
+            "error-container": "#ffdad6",
+            "secondary-fixed": "#ffdf98",
+            "surface-container-high": "#dee8ff",
+            "tertiary-container": "#0d1d3c",
+            "surface-variant": "#d8e3fb",
+            "on-tertiary-fixed-variant": "#384668",
+            "on-primary-fixed": "#0d1e25",
+            "tertiary-fixed-dim": "#b7c6ee",
+            "on-secondary-fixed": "#251a00",
+            "outline": "#73787b",
+            "surface-container-low": "#f0f3ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "margin-mobile": "1rem",
+            "gutter-mobile": "1rem",
+            "margin": "2rem",
+            "space-xl": "2.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "body-md": ["Plus Jakarta Sans"],
+            "title-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Playfair Display"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "title-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Playfair Display"],
+            "display-mobile": ["Playfair Display"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Playfair Display"],
+            "display": ["Playfair Display"]
+          },
+          "fontSize": {
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "title-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+            "display-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-parchment-shadow {
+      box-shadow: 0 12px 36px rgba(15, 32, 39, 0.08), 0 2px 6px rgba(15, 32, 39, 0.04);
+    }
+    .gold-rim-border {
+      border: 1px solid rgba(197, 155, 39, 0.6);
+    }
+    .gold-rim-shadow:hover {
+      box-shadow: 0 4px 14px rgba(197, 155, 39, 0.25);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md min-h-screen flex flex-col antialiased">
+<!-- TOP APP BAR -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest dark:bg-primary-container border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center w-full px-space-lg py-space-sm max-w-full">
+<!-- Brand & Left Navigation Links -->
+<div class="flex items-center space-x-8">
+<a class="flex items-center space-x-3 group" href="#">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center border border-secondary shadow-sm">
+<span class="font-headline-md text-headline-md font-bold text-secondary-fixed tracking-tight">LN</span>
+</div>
+<span class="text-headline-sm font-headline-sm font-bold text-primary dark:text-inverse-primary tracking-tight">LawNest</span>
+</a>
+<!-- Desktop Navigation Cluster -->
+<nav class="hidden md:flex items-center space-x-6">
+<a class="text-primary dark:text-inverse-primary font-title-sm text-title-sm border-b-2 border-secondary pb-1 pt-1" href="#">Contratos</a>
+<a class="text-on-surface-variant dark:text-outline font-title-sm text-title-sm hover:text-primary dark:hover:text-inverse-primary pb-1 pt-1 hover:bg-surface-container-low transition-colors duration-150" href="#">Modelos</a>
+<a class="text-on-surface-variant dark:text-outline font-title-sm text-title-sm hover:text-primary dark:hover:text-inverse-primary pb-1 pt-1 hover:bg-surface-container-low transition-colors duration-150" href="#">Expedientes</a>
+<a class="text-on-surface-variant dark:text-outline font-title-sm text-title-sm hover:text-primary dark:hover:text-inverse-primary pb-1 pt-1 hover:bg-surface-container-low transition-colors duration-150" href="#">Biblioteca Legal</a>
+</nav>
+</div>
+<!-- Center-Right: Search and Utilities -->
+<div class="flex items-center space-x-4">
+<div class="hidden lg:flex items-center relative w-72">
+<span class="material-symbols-outlined absolute left-3 text-outline text-lg pointer-events-none">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 bg-surface-container-low rounded-lg border border-outline-variant text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary" placeholder="Buscar contratos, clientes o plantillas..." type="text"/>
+</div>
+<div class="flex items-center space-x-2 border-l border-outline-variant pl-4">
+<button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150" title="Notificaciones">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-secondary-container rounded-full border border-surface-container-lowest"></span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150" title="Ayuda">
+<span class="material-symbols-outlined">help</span>
+</button>
+<!-- Active Attorney Profile Pill -->
+<div class="flex items-center space-x-3 ml-2 pl-3 py-1 pr-2 rounded-full bg-surface-container border border-outline-variant/60">
+<img class="w-8 h-8 rounded-full object-cover border border-secondary" data-alt="Professional headshot of senior attorney Lic. Roberto Morales in a corporate navy suit inside a prestigious legal firm board room with natural ambient window lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_sz1XhtGAMS0nhQnCrg8mOK3SsXo02kR88A87i868JP4snBRsjoww8BYdFuvDvdnbov7Z87oky0JsyR9-neRfYGf-8-iGTShPeTffXb6LxpmDsvod8zQp_yN-CSs05SQEPhJ33gcj3qFoxv8STCE_zBMcSmqm1OonEiBZozFjUguH0zySnLgrmLhg7mRveO6VCwsfFUf_r_06ve3PhSkArF4R0EbT3bdLAi6yzZfwl5HLaE65tvx0gQ"/>
+<div class="hidden xl:block text-left pr-2">
+<p class="font-title-sm text-title-sm leading-tight text-primary">Lic. Roberto Morales</p>
+<p class="font-label-sm text-label-sm text-secondary">Socio Director</p>
+</div>
+</div>
+<!-- Trailing Primary Action -->
+<button class="hidden sm:flex items-center space-x-1 bg-primary-container hover:bg-tertiary-container text-on-primary px-4 py-2 rounded-lg border border-secondary transition-all duration-150 gold-rim-shadow">
+<span class="material-symbols-outlined text-sm text-secondary-fixed">add</span>
+<span class="font-label-md text-label-md">Nuevo Contrato</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- SUBHEADER / WORKBENCH CONTEXT BAR -->
+<section class="bg-surface-container-low border-b border-outline-variant/70 px-space-lg py-3">
+<div class="w-full flex flex-col md:flex-row md:items-center justify-between gap-3">
+<div class="flex flex-col">
+<nav class="flex items-center space-x-2 font-label-sm text-label-sm text-outline mb-1">
+<span>Inicio</span>
+<span>/</span>
+<span>Generador de Contratos</span>
+<span>/</span>
+<span class="text-secondary font-semibold">Fase 1: Redacción Dinámica</span>
+</nav>
+<div class="flex items-center space-x-3">
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">Contract Generation Portal - Phase 1: Drafting &amp; Live Preview</h1>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-container/20 text-on-secondary-container border border-secondary/30 font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Borrador Activo
+          </span>
+</div>
+</div>
+<!-- Quick Document Engine Actions -->
+<div class="flex items-center space-x-2 self-start md:self-auto">
+<div class="flex items-center bg-surface-container-lowest px-3 py-1.5 rounded-lg border border-outline-variant font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-base mr-1.5 text-secondary">lock</span>
+<span>Cifrado SSL Legal 256-Bit</span>
+</div>
+<button class="p-1.5 bg-surface-container-lowest hover:bg-surface-container border border-outline-variant rounded-lg text-on-surface-variant transition-colors" id="resetBtn" title="Restablecer Campos">
+<span class="material-symbols-outlined text-base">restart_alt</span>
+</button>
+</div>
+</div>
+</section>
+<!-- MAIN WORKBENCH: DUAL-PANE GRID -->
+<main class="flex-1 w-full px-space-lg py-6 max-w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- LEFT PANE: DYNAMIC FORM CONFIGURATOR (5 Cols) -->
+<section class="lg:col-span-5 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 space-y-6">
+<div class="border-b border-outline-variant pb-4 flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Configuración del Contrato</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Complete las cláusulas esenciales para actualizar la vista en tiempo real.</p>
+</div>
+<span class="material-symbols-outlined text-secondary">description</span>
+</div>
+<form class="space-y-4" onsubmit="event.preventDefault();">
+<!-- SELECT CONTRACT TYPE -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 tracking-wider uppercase" for="contractType">SELECT CONTRACT TYPE</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3.5 py-2.5 font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-2 focus:ring-secondary/20 appearance-none pr-10 cursor-pointer" id="contractType">
+<option selected="" value="arrendamiento">Tipo Uno (Contrato Arrendamiento)</option>
+<option value="nda">Acuerdo de Confidencialidad (NDA)</option>
+<option value="servicios">Prestación de Servicios Profesionales</option>
+<option value="compraventa">Contrato de Compraventa Mercantil</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-on-surface-variant text-xl">expand_more</span>
+</div>
+</div>
+<!-- NOMBRE 1 -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 tracking-wider uppercase" for="inputNombre1">NOMBRE 1 (Arrendador / Otorgante)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3.5 py-2.5 font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-2 focus:ring-secondary/20 transition-all" id="inputNombre1" type="text" value="Inmobiliaria Bosques del Prado S.A."/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline text-lg pointer-events-none">corporate_fare</span>
+</div>
+</div>
+<!-- NOMBRE 2 -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 tracking-wider uppercase" for="inputNombre2">NOMBRE 2 (Arrendatario / Receptor)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3.5 py-2.5 font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-2 focus:ring-secondary/20 transition-all" id="inputNombre2" type="text" value="Lic. Carlos Mendoza Ramos"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline text-lg pointer-events-none">person</span>
+</div>
+</div>
+<!-- DIRECCIÓN 1 -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 tracking-wider uppercase" for="inputDireccion">DIRECCIÓN 1 (Inmueble / Domicilio Legal)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3.5 py-2.5 font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-2 focus:ring-secondary/20 transition-all" id="inputDireccion" type="text" value="Av. Paseo de la Reforma 450, Piso 18, CDMX"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline text-lg pointer-events-none">location_on</span>
+</div>
+</div>
+<!-- DUAL ROW: PLAZO & RENTA -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 tracking-wider uppercase" for="inputPlazo">PLAZO DEL CONTRATO (meses)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3.5 py-2.5 font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-2 focus:ring-secondary/20 transition-all" id="inputPlazo" type="text" value="12 meses"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline text-lg pointer-events-none">calendar_today</span>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5 tracking-wider uppercase" for="inputRenta">RENTA MENSUAL ($)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-3.5 py-2.5 font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-2 focus:ring-secondary/20 transition-all" id="inputRenta" type="text" value="$45,000.00 MXN"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline text-lg pointer-events-none">payments</span>
+</div>
+</div>
+</div>
+<!-- PRIMARY ACTION: VISTA PREVIA -->
+<div class="pt-3">
+<button class="w-full py-3 px-4 rounded-lg bg-primary-container text-on-primary font-title-sm text-title-sm flex items-center justify-center space-x-2 border border-secondary shadow-md hover:bg-tertiary-container gold-rim-shadow transition-all duration-200" id="previewBtn" type="button">
+<span class="material-symbols-outlined text-secondary-fixed">visibility</span>
+<span>Vista Previa</span>
+</button>
+</div>
+<!-- QUICK ACTION ROW: EXPORT UTILITIES -->
+<div class="pt-2 grid grid-cols-3 gap-2.5">
+<!-- Generar PDF -->
+<button class="flex flex-col sm:flex-row items-center justify-center p-2.5 sm:space-x-1.5 rounded-lg bg-primary-container hover:bg-tertiary-container border border-secondary/60 text-on-primary transition-all gold-rim-shadow text-center" type="button">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">picture_as_pdf</span>
+<span class="font-label-sm text-label-sm mt-1 sm:mt-0 font-bold">Generar PDF</span>
+</button>
+<!-- Enviar Mail -->
+<button class="flex flex-col sm:flex-row items-center justify-center p-2.5 sm:space-x-1.5 rounded-lg bg-primary-container hover:bg-tertiary-container border border-secondary/60 text-on-primary transition-all gold-rim-shadow text-center" type="button">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">mail</span>
+<span class="font-label-sm text-label-sm mt-1 sm:mt-0 font-bold">Enviar por Mail</span>
+</button>
+<!-- Enviar WhatsApp -->
+<button class="flex flex-col items-center justify-center p-2 rounded-lg bg-primary-container hover:bg-tertiary-container border border-secondary/60 text-on-primary transition-all gold-rim-shadow text-center" type="button">
+<div class="flex items-center space-x-1">
+<span class="material-symbols-outlined text-secondary-fixed text-base">chat</span>
+<span class="font-label-sm text-label-sm font-bold">Enviar WhatsApp</span>
+</div>
+<span class="text-[9px] text-secondary-fixed opacity-90 leading-tight">(API Oficial)</span>
+</button>
+</div>
+</form>
+<!-- Compliance Mini-Callout -->
+<div class="bg-surface-container-low rounded-lg p-3.5 border border-outline-variant/60 flex items-start space-x-3">
+<span class="material-symbols-outlined text-secondary text-lg mt-0.5">verified_user</span>
+<div class="text-xs text-on-surface-variant leading-relaxed">
+<p><span class="font-bold text-on-surface">Cumplimiento Notarial:</span> Esta plantilla cumple con las disposiciones del Código Civil Federal y las normativas mercantiles vigentes 2024.</p>
+</div>
+</div>
+</section>
+<!-- RIGHT PANE: LIVE LEGAL DOCUMENT PREVIEW CANVAS (7 Cols) -->
+<section class="lg:col-span-7 flex flex-col items-center">
+<!-- Workbench Toolbar -->
+<div class="w-full max-w-[850px] bg-surface-container-lowest rounded-t-xl border border-b-0 border-outline-variant px-4 py-2.5 flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="font-label-md text-label-md text-on-surface tracking-wider uppercase">VISTA PREVIA DE CONTRATO</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-primary-fixed text-on-primary-fixed-variant">Modo Dinámico</span>
+</div>
+<div class="flex items-center space-x-3 text-outline text-xs">
+<span class="flex items-center"><span class="material-symbols-outlined text-base mr-1">zoom_in</span> 100%</span>
+<span>|</span>
+<span class="flex items-center"><span class="material-symbols-outlined text-base mr-1">description</span> 2 Páginas</span>
+<span>|</span>
+<button class="hover:text-primary transition-colors flex items-center" title="Imprimir borrador">
+<span class="material-symbols-outlined text-base">print</span>
+</button>
+</div>
+</div>
+<!-- Realistic Legal Document Paper Sheet (US Letter / A4 Aspect Ratio) -->
+<div class="w-full max-w-[850px] bg-surface-container-lowest border border-outline-variant rounded-b-xl custom-parchment-shadow p-8 sm:p-12 relative overflow-hidden">
+<!-- Subtle Background Watermark Seal -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.035] select-none">
+<span class="font-display text-[260px] font-bold text-primary">LN</span>
+</div>
+<!-- Document Watermark Pill Top-Right -->
+<div class="absolute top-6 right-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded bg-secondary-fixed/40 border border-secondary/40 text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold tracking-wide">
+              VISTA PREVIA EN TIEMPO REAL
+            </span>
+</div>
+<!-- Legal Header -->
+<div class="text-center pb-8 border-b-2 border-primary/10">
+<div class="w-12 h-12 mx-auto mb-2 rounded-full border border-secondary flex items-center justify-center bg-primary-container">
+<span class="text-secondary-fixed font-headline-md font-bold text-sm tracking-widest">LN</span>
+</div>
+<p class="font-label-md text-label-md text-secondary tracking-widest uppercase">LAWNEST NOTARIAL &amp; CORPORATE REPOSITORY</p>
+<h3 class="font-headline-lg text-headline-lg text-primary mt-1 font-bold">CONTRATO DE ARRENDAMIENTO INMOBILIARIO</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic mt-1">Expediente Digital Ref: LN-2024-ARR-0921B</p>
+</div>
+<!-- Contract Body Text with Dynamic Field Highlighting -->
+<div class="mt-8 space-y-6 text-on-surface font-body-md text-body-md leading-relaxed text-justify">
+<!-- PÁRRAFO DE INTRODUCCIÓN -->
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-2">PÁRRAFO DE INTRODUCCIÓN</h4>
+<p>
+                En la Ciudad de México, con fecha de registro automatizado al día de hoy, comparece por una parte en su calidad de <strong class="text-primary">"EL ARRENDADOR"</strong>: 
+                <mark class="bg-secondary-fixed/50 text-on-secondary-fixed-variant font-semibold px-1.5 py-0.5 rounded border border-secondary/30 transition-colors" id="dispNombre1">Inmobiliaria Bosques del Prado S.A.</mark>, representada legalmente por su apoderado general; y por la otra parte, en su calidad de <strong class="text-primary">"EL ARRENDATARIO"</strong>: 
+                <mark class="bg-secondary-fixed/50 text-on-secondary-fixed-variant font-semibold px-1.5 py-0.5 rounded border border-secondary/30 transition-colors" id="dispNombre2">Lic. Carlos Mendoza Ramos</mark>, personas que se reconocen mutua y recíprocamente con capacidad jurídica idónea y suficiente para obligarse al tenor de las siguientes cláusulas formales:
+              </p>
+</div>
+<!-- CLÁUSULA PRIMERA -->
+<div class="pl-3 border-l-2 border-secondary/50 space-y-1">
+<h4 class="font-title-md text-title-md text-primary font-bold">CLÁUSULA PRIMERA (OBJETO Y VIGENCIA):</h4>
+<p>
+                EL ARRENDADOR concede en favor de EL ARRENDATARIO el uso pacífico y goce temporal del bien inmueble materia de este instrumento, por el término improrrogable de 
+                <mark class="bg-secondary-fixed/50 text-on-secondary-fixed-variant font-semibold px-1.5 py-0.5 rounded border border-secondary/30 transition-colors" id="dispPlazo">12 meses</mark>, el cual comenzará a computarse a partir de la firma electrónica autenticada de las partes interesadas.
+              </p>
+</div>
+<!-- CLÁUSULA SEGUNDA -->
+<div class="pl-3 border-l-2 border-secondary/50 space-y-1">
+<h4 class="font-title-md text-title-md text-primary font-bold">CLÁUSULA SEGUNDA (CONTRAPRESTACIÓN Y RENTA):</h4>
+<p>
+                Como contraprestación pactada por el uso del bien arrendado, EL ARRENDATARIO se compromete a transferir de manera íntegra y mensual la cantidad neta convenida de 
+                <mark class="bg-secondary-fixed/50 text-on-secondary-fixed-variant font-semibold px-1.5 py-0.5 rounded border border-secondary/30 transition-colors" id="dispRenta">$45,000.00 MXN</mark>, pagaderos en moneda corriente dentro de los primeros cinco días hábiles de cada mensualidad mediante el portal transaccional institucional.
+              </p>
+</div>
+<!-- CLÁUSULA TERCERA -->
+<div class="pl-3 border-l-2 border-secondary/50 space-y-1">
+<h4 class="font-title-md text-title-md text-primary font-bold">CLÁUSULA TERCERA (UBICACIÓN Y DOMICILIO):</h4>
+<p>
+                El inmueble objeto material del presente acuerdo se encuentra formalmente ubicado y catastrado en la dirección legal correspondiente a: 
+                <mark class="bg-secondary-fixed/50 text-on-secondary-fixed-variant font-semibold px-1.5 py-0.5 rounded border border-secondary/30 transition-colors" id="dispDireccion">Av. Paseo de la Reforma 450, Piso 18, CDMX</mark>, libre de todo gravamen u oposición posesoria de terceros.
+              </p>
+</div>
+<!-- Signature Blocks Preview -->
+<div class="pt-10 mt-10 border-t border-outline-variant grid grid-cols-2 gap-8">
+<div class="text-center">
+<div class="h-14 flex items-end justify-center pb-1">
+<span class="font-label-sm text-label-sm text-outline italic">[Firma Digital Tokenizada 0x8F9B]</span>
+</div>
+<div class="border-t border-on-surface/40 pt-2">
+<p class="font-title-sm text-title-sm text-primary" id="signArrendador">Inmobiliaria Bosques del Prado S.A.</p>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">EL ARRENDADOR</p>
+</div>
+</div>
+<div class="text-center">
+<div class="h-14 flex items-end justify-center pb-1">
+<span class="font-label-sm text-label-sm text-outline italic">[Pendiente de Validación Biométrica]</span>
+</div>
+<div class="border-t border-on-surface/40 pt-2">
+<p class="font-title-sm text-title-sm text-primary" id="signArrendatario">Lic. Carlos Mendoza Ramos</p>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">EL ARRENDATARIO</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Document Status Bar -->
+<div class="mt-10 pt-4 border-t border-outline-variant/60 flex flex-wrap items-center justify-between text-outline font-label-sm text-label-sm">
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span>
+<span>Validación de hash SHA-256: 4e8b...1a09</span>
+</div>
+<div class="flex items-center space-x-4 mt-2 sm:mt-0">
+<span>Zoom: 100%</span>
+<span>•</span>
+<span>Firma digital: Pendiente</span>
+<span>•</span>
+<span class="text-primary font-semibold">Página 1 de 2</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Interactive Synchronization Script -->
+<script>
+    // Live Synchronizer from Inputs to Document Preview
+    const inputNombre1 = document.getElementById('inputNombre1');
+    const inputNombre2 = document.getElementById('inputNombre2');
+    const inputDireccion = document.getElementById('inputDireccion');
+    const inputPlazo = document.getElementById('inputPlazo');
+    const inputRenta = document.getElementById('inputRenta');
+
+    const dispNombre1 = document.getElementById('dispNombre1');
+    const dispNombre2 = document.getElementById('dispNombre2');
+    const dispDireccion = document.getElementById('dispDireccion');
+    const dispPlazo = document.getElementById('dispPlazo');
+    const dispRenta = document.getElementById('dispRenta');
+
+    const signArrendador = document.getElementById('signArrendador');
+    const signArrendatario = document.getElementById('signArrendatario');
+
+    function syncFields() {
+      dispNombre1.textContent = inputNombre1.value || '[Nombre del Arrendador]';
+      signArrendador.textContent = inputNombre1.value || '[Nombre del Arrendador]';
+
+      dispNombre2.textContent = inputNombre2.value || '[Nombre del Arrendatario]';
+      signArrendatario.textContent = inputNombre2.value || '[Nombre del Arrendatario]';
+
+      dispDireccion.textContent = inputDireccion.value || '[Dirección no especificada]';
+      dispPlazo.textContent = inputPlazo.value || '[Plazo no fijado]';
+      dispRenta.textContent = inputRenta.value || '[$0.00]';
+    }
+
+    [inputNombre1, inputNombre2, inputDireccion, inputPlazo, inputRenta].forEach(el => {
+      el.addEventListener('input', syncFields);
+    });
+
+    document.getElementById('previewBtn').addEventListener('click', () => {
+      syncFields();
+      const markHighlights = document.querySelectorAll('mark');
+      markHighlights.forEach(el => {
+        el.classList.add('ring-2', 'ring-secondary');
+        setTimeout(() => el.classList.remove('ring-2', 'ring-secondary'), 1000);
+      });
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      inputNombre1.value = "Inmobiliaria Bosques del Prado S.A.";
+      inputNombre2.value = "Lic. Carlos Mendoza Ramos";
+      inputDireccion.value = "Av. Paseo de la Reforma 450, Piso 18, CDMX";
+      inputPlazo.value = "12 meses";
+      inputRenta.value = "$45,000.00 MXN";
+      syncFields();
+    });
+  </script>
+</body></html>

@@ -1,0 +1,24 @@
+name: buffet-contratos
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: buffet_contratos_app
+    ports:
+      - "5173:5173"
+    volumes:
+      # Montar todo el código fuente local en /app dentro del contenedor
+      - .:/app
+      # Proteger node_modules dentro del contenedor
+      - /app/node_modules
+      # Volumen persistente para datos / contratos generados
+      - contratos_data:/app/data
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    restart: unless-stopped
+
+volumes:
+  contratos_data:
+    driver: local
