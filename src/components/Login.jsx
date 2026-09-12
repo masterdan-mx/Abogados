@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, ShieldCheck, ArrowRight } from 'lucide-react';
 import justiciaImg from '../assets/justicia.jpg';
+import jcLogo from '../assets/NEW JC_full1.png';
 
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState('abogado@lawnest.com');
@@ -239,14 +240,20 @@ export default function Login({ onLogin }) {
         </div>
 
         {/* Pie de Página */}
-        <footer className="w-full text-center pt-6 border-t border-slate-200">
-          <p className="text-xs text-slate-500">
-            ¿Necesita acceso legal?{' '}
-            <a href="#solicitar-cuenta" onClick={(e) => e.preventDefault()} className="text-[#000508] font-semibold underline underline-offset-4 hover:text-[#775a00] transition-colors">
-              Solicitar una cuenta
-            </a>
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mt-3 text-[11px] text-slate-400">
+        <footer className="w-full text-center pt-6 border-t border-slate-200 flex flex-col items-center">
+          <a
+            href="https://www.jctechnology.com.mx/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block transition-transform hover:scale-105 mb-2"
+          >
+            <img
+              src={jcLogo}
+              alt="JC Technology"
+              className="h-10 sm:h-12 w-auto object-contain mx-auto"
+            />
+          </a>
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mt-2 text-[11px] text-slate-400">
             <a href="#terminos" onClick={(e) => e.preventDefault()} className="hover:text-slate-700 transition-colors">Términos de Práctica</a>
             <span>•</span>
             <a href="#privilegio" onClick={(e) => e.preventDefault()} className="hover:text-slate-700 transition-colors">Secreto Profesional</a>
